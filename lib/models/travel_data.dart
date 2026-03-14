@@ -20,6 +20,7 @@ class Destination {
   });
 }
 
+//Hard-coded data for destinations
 class TravelData {
   static const List<Destination> destinations = [
     Destination(

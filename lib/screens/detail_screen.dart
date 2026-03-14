@@ -1,5 +1,3 @@
-// lib/screens/detail_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/travel_data.dart';
 import 'package:travel_app/screens/booking_screen.dart';

@@ -16,6 +16,37 @@ class _HomeScreenState extends State<HomeScreen> {
   String _selectedCategory = 'All';
   final List<String> categories = ['All', 'Beach', 'Mountain', 'City'];
 
+//Search Controller
+  final TextEditingController _searchController = TextEditingController();
+//Filtered destination list
+  List<Destination> _filteredDestinations = TravelData.destinations;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_filterDestinations);
+  }
+
+  void _filterDestinations() {
+    final query = _searchController.text.toLowerCase();
+
+    setState(() {
+      _filteredDestinations = TravelData.destinations.where((dest) {
+        final matchesCategory =
+            _selectedCategory == 'All' || dest.category == _selectedCategory;
+        final matchesSearch =
+            dest.title.toLowerCase().contains(query); // filter by title
+        return matchesCategory && matchesSearch;
+      }).toList();
+    });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,19 +61,27 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          // Search bar 
+          // Search bar
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: SizedBox(
-              height: 50,
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search destinations...',
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
+            child: TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: 'Search destinations...',
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: _searchController.text.isNotEmpty
+                    ? IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () {
+                          _searchController.clear();
+                        },
+                      )
+                    : null,
+                filled: true,
+                fillColor: Colors.grey.shade100,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
                 ),
               ),
             ),
@@ -62,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onTap: () {
                     setState(() {
                       _selectedCategory = categories[index];
+                      _filterDestinations();
                     });
                   },
                 );
@@ -70,21 +110,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           // Popular Section Title
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 4),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Popular',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Text('See All', style: TextStyle(color: Colors.blue)),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _selectedCategory = 'All';
+                      _searchController.clear();
+                      _filteredDestinations = TravelData.destinations;
+                    });
+                  },
+                  child: const Text(
+                    'See All',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
               ],
             ),
           ),
 
-          // Popular List - Fixed height
+          // Popular list
           SizedBox(
             height: 200,
             child: ListView.builder(
@@ -121,34 +173,43 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // All Destinations Grid - Takes remaining space
+          // All Destinations Grid
           Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.8,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-              ),
-              itemCount: TravelData.destinations.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailScreen(
-                            destination: TravelData.destinations[index]),
-                      ),
-                    );
-                  },
-                  child: DestinationCard(
-                      destination: TravelData.destinations[index]),
-                );
-              },
-            ),
-          ),
+            child: _filteredDestinations.isEmpty
+                ? const Center(
+                    child: Text(
+                      "No destinations found",
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  )
+                : GridView.builder(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.8,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                    ),
+                    itemCount: _filteredDestinations.length,
+                    itemBuilder: (context, index) {
+                      final dest = _filteredDestinations[index];
+
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailScreen(destination: dest),
+                            ),
+                          );
+                        },
+                        child: DestinationCard(destination: dest),
+                      );
+                    },
+                  ),
+          )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

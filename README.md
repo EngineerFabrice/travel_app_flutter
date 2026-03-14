@@ -1,102 +1,161 @@
 
-# Travel App Flutter 
+# Travel App Flutter
 
-A modern **Flutter travel application UI** that allows users to explore destinations, view details, and simulate a booking process. The project demonstrates clean Flutter architecture using reusable widgets, structured folders, and a consistent theme.
+> A modern, modular Flutter travel application UI for exploring destinations, viewing details, and simulating the booking process.
 
-This project is designed as a  **learning example for Flutter UI development** , focusing on modular design and user-friendly navigation.
+![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=flat-square&logo=flutter)![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?style=flat-square&logo=dart)![License](https://img.shields.io/badge/License-Educational-green?style=flat-square)![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-lightgrey?style=flat-square)
 
-# Features
+## Overview
 
-* Explore travel destinations
-* View destination details
-* Booking form interface
-* Date selection for bookings
-* Success confirmation dialog
-* Clean navigation flow
-* Reusable UI widgets
+**Travel App Flutter** is a clean, well-structured Flutter UI project designed as a hands-on learning example for Flutter development. It demonstrates modular architecture, reusable widget design, consistent theming, and smooth multi-screen navigation — all using Flutter and Material Design components.
 
-# Project Structure
+## Features
 
-The application follows a **modular Flutter architecture** to improve maintainability and scalability.
+* Browse a curated list of travel destinations
+* View rich destination detail pages
+* Fill out a booking form interface
+* Select booking dates via a date picker
+* See a booking success confirmation dialog
+* Clean and intuitive navigation flow between screens
+* Fully reusable, composable UI widgets
 
+## Project Structure
 
+```
 
+travel_app_flutter/
+│
+├── lib/
+│   ├── main.dart                    # Application entry point
+│   │
+│   ├── models/
+│   │   └── travel_data.dart         # Travel destination data model
+│   │
+│   ├── screens/
+│   │   ├── home_screen.dart         # Main screen displaying destinations
+│   │   ├── detail_screen.dart       # Destination detail page
+│   │   └── booking_screen.dart      # Booking form interface
+│   │
+│   ├── widgets/
+│   │   ├── category_chip.dart       # Category selection UI chip
+│   │   ├── custom_button.dart       # Reusable button component
+│   │   ├── destination_card.dart    # Destination display card
+│   │   └── rating_widget.dart       # Star rating display component
+│   │
+│   └── theme/
+│       └── app_theme.dart           # Global application theme & styling
+├── assets/                          # Images, fonts, and static resources
+├── project_output/                  # Output videos & Screenshots
+|   ├── demos/ 
+|   ├── screenshots/ 
+|
+├── test/                            # Unit and widget tests
+├── pubspec.yaml                     # Project dependencies and metadata
+└── README.md
+```
 
+### Architecture Overview
 
+The project follows a  **feature-based modular structure** :
 
-<pre class="overflow-visible! px-0!" data-start="960" data-end="1606"><div class="relative w-full mt-4 mb-1"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼk ͼy"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>lib/</span><br/><span>│</span><br/><span>├── main.dart                # Application entry point</span><br/><span>│</span><br/><span>├── models/</span><br/><span>│   └── travel_data.dart     # Travel destination data model</span><br/><span>│</span><br/><span>├── screens/</span><br/><span>│   ├── home_screen.dart     # Main screen displaying destinations</span><br/><span>│   ├── detail_screen.dart   # Destination detail page</span><br/><span>│   └── booking_screen.dart  # Booking form interface</span><br/><span>│</span><br/><span>├── widgets/</span><br/><span>│   ├── category_chip.dart   # Category selection UI</span><br/><span>│   ├── custom_button.dart   # Reusable button component</span><br/><span>│   ├── destination_card.dart# Destination display card</span><br/><span>│   └── rating_widget.dart   # Rating display component</span><br/><span>│</span><br/><span>└── theme/</span><br/><span>    └── app_theme.dart       # Application theme and styling</span></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></pre>
+| Layer           | Folder        | Responsibility                                  |
+| --------------- | ------------- | ----------------------------------------------- |
+| Entry Point     | `main.dart` | App initialization, routing setup               |
+| Data            | `models/`   | Data classes and business logic structures      |
+| UI (Pages)      | `screens/`  | Full-page views tied to navigation routes       |
+| UI (Components) | `widgets/`  | Reusable, stateless/stateful UI building blocks |
+| Styling         | `theme/`    | Centralized colors, typography, and theme data  |
 
-This separation improves  **code readability and reusability** .
+## Application Screens
 
-# Application Screens
+| Screen          | File                    | Description                               |
+| --------------- | ----------------------- | ----------------------------------------- |
+| Home            | `home_screen.dart`    | Destination list with category filters    |
+| Detail          | `detail_screen.dart`  | Full destination info and gallery         |
+| Booking Form    | `booking_screen.dart` | Input form to capture booking details     |
+| Date Selection  | *(in booking_screen)* | Date picker for travel dates              |
+| Success Dialog  | *(in booking_screen)* | Confirmation after successful booking     |
+| Navigation Flow | *(via Navigator)*     | Seamless push/pop routing between screens |
 
-### Home Screen
+## Getting Started
 
-Displays travel destinations and categories.
+### Prerequisites
 
-### Destination Details
+* [Flutter SDK](https://flutter.dev/docs/get-started/install) (3.x or later)
+* Dart SDK (bundled with Flutter)
+* Android Studio / VS Code with Flutter plugin
+* An emulator or physical device
 
-Shows full information about a selected destination.
+### Installation
 
-### Booking Form
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/EngineerFabrice/travel_app_flutter.git
+   ```
+2. **Navigate to the project directory**
+   ```bash
+   cd travel_app_flutter
+   ```
+3. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+4. **Run the application**
+   ```bash
+   flutter run
+   ```
 
-Allows the user to fill booking information.
+> To run on a specific platform, use `flutter run -d chrome` (web), `flutter run -d android`, or `flutter run -d ios`.
 
-### Booking Date Selection
+## Technologies Used
 
-### Booking Success Dialog
+| Technology                   | Purpose                     |
+| ---------------------------- | --------------------------- |
+| [Flutter](https://flutter.dev/) | Cross-platform UI framework |
+| [Dart](https://dart.dev/)       | Programming language        |
+| Material Design              | UI component system         |
 
-### Navigation Flow
+## Learning Objectives
 
-# Getting Started
+This project is designed to help Flutter learners understand and practice:
 
-## 1. Clone the repository
+* **Widget composition** — building UIs from small, reusable components
+* **Screen navigation** — using Flutter's `Navigator` for push/pop routing
+* **Separation of concerns** — keeping screens, widgets, models, and themes isolated
+* **Theming** — applying a consistent design system via `ThemeData`
+* **State management basics** — managing UI state in `StatefulWidget`s
+* **Clean folder structure** — organizing a Flutter project for scalability
 
-<pre class="overflow-visible! px-0!" data-start="2506" data-end="2581"><div class="relative w-full mt-4 mb-1"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼk ͼy"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>git clone https://github.com/EngineerFabrice/travel_app_flutter.git</span></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></pre>
+## Contributing
 
-## 2. Navigate to the project directory
+Contributions are welcome! To get started:
 
-<pre class="overflow-visible! px-0!" data-start="2629" data-end="2658"><div class="relative w-full mt-4 mb-1"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼk ͼy"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>cd travel_app_flutter</span></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></pre>
+1. **Fork** the repository
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m "feat: add your feature description"
+   ```
+4. **Push to your fork**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. **Open a Pull Request** against the `main` branch
 
-## 3. Install dependencies
+Please follow the existing code style and keep widgets small and single-purpose.
 
-<pre class="overflow-visible! px-0!" data-start="2693" data-end="2716"><div class="relative w-full mt-4 mb-1"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼk ͼy"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>flutter pub get</span></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></pre>
+## License
 
-## 4. Run the application
+This project is intended for **educational purposes** and learning Flutter development. Feel free to use it as a reference or starting point for your own projects.
 
-<pre class="overflow-visible! px-0!" data-start="2750" data-end="2769"><div class="relative w-full mt-4 mb-1"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼk ͼy"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>flutter run</span></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></pre>
+## Authors
 
-# Technologies Used
+**Fabrice NDAYISABA** — [@EngineerFabrice](https://github.com/EngineerFabrice)
 
-* **Flutter**
-* **Dart**
-* Material Design UI components
+**Silas HAKUZWIMANA** — [@SilasHakuzwimana](https://github.com/SilasHakuzwimana)
 
-# Learning Objectives
-
-This project demonstrates:
-
-* Flutter UI development
-* Reusable widget creation
-* Navigation between screens
-* Clean project architecture
-* Theming and styling in Flutter
-
-# Contributing
-
-Contributions are welcome. To contribute:
-
-1. Fork the repository
-2. Create a feature branch
-
-<pre class="overflow-visible! px-0!" data-start="3180" data-end="3229"><div class="relative w-full mt-4 mb-1"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼk ͼy"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>git checkout -b feature/your-feature-name</span></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></pre>
-
-3. Commit your changes
-
-<pre class="overflow-visible! px-0!" data-start="3255" data-end="3294"><div class="relative w-full mt-4 mb-1"><div class=""><div class="relative"><div class="h-full min-h-0 min-w-0"><div class="h-full min-h-0 min-w-0"><div class="border border-token-border-light border-radius-3xl corner-superellipse/1.1 rounded-3xl"><div class="h-full w-full border-radius-3xl bg-token-bg-elevated-secondary corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback"><div class="pointer-events-none absolute end-1.5 top-1 z-2 md:end-2 md:top-1"></div><div class="pe-11 pt-3"><div class="relative z-0 flex max-w-full"><div id="code-block-viewer" dir="ltr" class="q9tKkq_viewer cm-editor z-10 light:cm-light dark:cm-light flex h-full w-full flex-col items-stretch ͼk ͼy"><div class="cm-scroller"><div class="cm-content q9tKkq_readonly"><span>git commit -m "Add new feature"</span></div></div></div></div></div></div></div></div></div><div class=""><div class=""></div></div></div></div></div></pre>
-
-4. Push to your fork and create a Pull Request.
-
-# License
-
-This project is intended for **educational purposes** and learning Flutter development.
+> *
+>     Built with ❤️ using Flutter & Dart*

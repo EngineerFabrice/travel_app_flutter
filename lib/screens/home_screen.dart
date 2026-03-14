@@ -1,5 +1,3 @@
-// lib/screens/home_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/travel_data.dart';
 import 'package:travel_app/screens/detail_screen.dart';
@@ -32,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          // Search Bar - Fixed height
+          // Search bar 
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: SizedBox(
@@ -50,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // Categories - Fixed height
+          // Categories
           SizedBox(
             height: 40,
             child: ListView.builder(

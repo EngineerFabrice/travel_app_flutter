@@ -1,5 +1,3 @@
-// lib/widgets/destination_card.dart
-
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/travel_data.dart';
 import 'package:travel_app/theme/app_theme.dart';

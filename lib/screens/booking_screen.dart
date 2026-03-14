@@ -1,5 +1,3 @@
-// lib/screens/booking_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:travel_app/models/travel_data.dart';
 import 'package:travel_app/theme/app_theme.dart';
@@ -168,7 +166,7 @@ class _BookingScreenState extends State<BookingScreen> {
 
             const SizedBox(height: 30),
 
-            // Confirm Button - FINAL FIXED VERSION
+            // Confirm button
             CustomButton(
               text: 'Confirm Booking',
               onPressed: (_selectedDate != null && !_isLoading)

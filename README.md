@@ -86,6 +86,10 @@ The project follows a  **feature-based modular structure** :
 * Android Studio / VS Code with Flutter plugin
 * An emulator or physical device
 
+
+Contains the full written report or project documentation for academic submission.
+
+
 ### Installation
 
 1. **Clone the repository**
